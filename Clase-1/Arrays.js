@@ -125,6 +125,11 @@ let ArrayConcatenado = numeros.concat(frutas)
 console.log(ArrayConcatenado);
 
 
+// Proxima Clase: 
+
+// Ciclos FOR
+
+
 
 
 
