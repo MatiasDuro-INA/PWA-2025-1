@@ -110,7 +110,7 @@ let numerosNuevos = numeros.join("///")
 //Splice: modifica el array eliminando y reemplazando por otro los elementos que querramos
 // Y retorna el elemento eliminado
 
-console.log(numeros);
+// console.log(numeros);
 
 let eliminados = numeros.splice(5, 2, "Peras", "Duraznos")
 
@@ -122,14 +122,31 @@ let eliminados = numeros.splice(5, 2, "Peras", "Duraznos")
 
 let ArrayConcatenado = numeros.concat(frutas)
 
-console.log(ArrayConcatenado);
+// console.log(ArrayConcatenado);
 
 
 // Proxima Clase: 
 
 // Ciclos FOR
 
+// Split
+// Me separa un string, en distintas partes, cortando apartir del argumento
 
+let palabra = "Escuela"
+
+// console.log(palabra);
+
+let palabraSeparada = palabra.split("")
+// console.log(palabraSeparada);
+
+
+// Modulo
+
+let num = 46
+
+let EsPar = num % 2 === 0;
+
+console.log("Es EsPar?:  ", EsPar);
 
 
 
