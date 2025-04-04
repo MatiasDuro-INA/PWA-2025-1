@@ -145,9 +145,17 @@ async function obtenerPokemon(nombre){
     console.log(alturaPokemon);
 }
 
-
 obtenerPokemon("pikachu")
 
+//
+// CALLBACKS Anidados o callbackhell => Codigo muy dificil de leer
+// Promesas => Encadenamiento mas sencillo de entender, con then/ catch
+// Async/Await => Escritura mas sencilla de leer  (Parece codigo sincronico, pese a no serlo)
 
-
-
+// Resumido:
+// Promise = representa una operacion que puede completarse, o fallar
+// then() = se ejecuta si salio todo bien
+// catch() = se ejecuta si algo salio mal
+// finally() = medio opcional, se ejecuta al final independientemente de si salio bien o mal
+// Promise.all = espera que todas las promesas se resuelvan
+// async- await = forma moderna de escribir codigo asincrono
