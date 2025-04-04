@@ -37,7 +37,6 @@ function esPalindromo(palabra){
     }
     }
 return {palindromos, normales}
-    
 
 }
 
