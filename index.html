@@ -6,9 +6,55 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hola Mundo</h1>
-    <h2>Nombre: </h2>
+    <h1 id="nombre">Nombre Pokemon: </h1>
+    <img id="imagen" alt="imagen de pokemon">
 </body>
+<script>
+    
+let pokemons = {}
+
+let ListaIds = [9, 25, 27, 47, 149, 77]
+
+
+async function obtenerPokemon() {
+    // console.log(id);
+    for (let index = 0; index < ListaIds.length; index++) {
+        const element = ListaIds[index];
+
+        try {
+            const respuesta = await fetch(`https://pokeapi.co/api/v2/pokemon/${element}`)
+            const data = await respuesta.json()
+            // console.log(`Pokemon ${data.name} - ID: ${data.id} - Altura: ${data.height} - Peso: ${data.weight} - Imagen: ${data.sprites.front_default}`);
+
+            let nombrePokemon = data.name
+            
+            pokemons[nombrePokemon] = {
+                id: data.id,
+                nombre: data.name,
+                altura: data.height,
+                peso: data.weight,
+                sprite: data.sprites.front_default,
+            }
+
+        } catch (error) {
+            console.error("Error: ")
+        }
+        // console.log(Pokemon);
+    }
+    
+    let pikachu = pokemons.pikachu
+    if(pikachu){
+        document.getElementById("nombre").textContent = `Nombre pokemon: ${pikachu.nombre}`
+        document.getElementById("imagen").src = pikachu.sprite
+
+    }
+
+    
+    
+}
+obtenerPokemon()
+
+</script>
 </html>
 
 <!-- // git config --global user.name "tunombre"
