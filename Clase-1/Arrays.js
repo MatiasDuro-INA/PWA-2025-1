@@ -146,7 +146,64 @@ let num = 46
 
 let EsPar = num % 2 === 0;
 
-console.log("Es EsPar?:  ", EsPar);
+// console.log("Es EsPar?:  ", EsPar);
+
+
+let tareas = ['tarea 1', 'tarea 2']
+let nuevaTarea = 'Tarea 3'
+
+let totalTareas = [...tareas, nuevaTarea]
+
+// console.log('Arrays: ', totalTareas);
+
+let objeto = {
+    "blastoise": {
+        "id": 9,
+        "nombre": "blastoise",
+        "altura": 16,
+        "peso": 855,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/9.gif"
+    },
+    "pikachu": {
+        "id": 25,
+        "nombre": "pikachu",
+        "altura": 4,
+        "peso": 60,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/25.gif"
+    },
+    "sandshrew": {
+        "id": 27,
+        "nombre": "sandshrew",
+        "altura": 6,
+        "peso": 120,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/27.gif"
+    },
+    "parasect": {
+        "id": 47,
+        "nombre": "parasect",
+        "altura": 10,
+        "peso": 295,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/47.gif"
+    },
+    "dragonite": {
+        "id": 149,
+        "nombre": "dragonite",
+        "altura": 22,
+        "peso": 2100,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/149.gif"
+    },
+    "ponyta": {
+        "id": 77,
+        "nombre": "ponyta",
+        "altura": 10,
+        "peso": 300,
+        "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/77.gif"
+    }
+}
+
+console.log("Resultado: ", Object.values(objeto));
+
+
 
 
 

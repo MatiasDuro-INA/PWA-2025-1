@@ -1,0 +1,10 @@
+.ButtonContainer{
+    padding: 20px;
+    margin: 5px;
+    /* background-color:blue; */
+    color: white;
+}
+
+.Button{
+    font-size: 25px;
+}
