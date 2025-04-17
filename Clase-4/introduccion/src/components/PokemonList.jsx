@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Titulo } from './Titulo'
-import { useEffect } from 'react'
 
 export const PokemonList = () => {
 
@@ -49,8 +48,8 @@ export const PokemonList = () => {
     }
 
     // Use Effect, es un Hook.
-    // Todo lo que este dentro del useEffect, se va a ejecutar, 
-    // dependiendo sus dependencias
+    // Todo lo que este dentro del useEffect, se va a ejecutar,
+    // dependiendo de si cambia de estado sus dependencias
     useEffect(() => {
         obtenerPokemon()           
     }, [])
