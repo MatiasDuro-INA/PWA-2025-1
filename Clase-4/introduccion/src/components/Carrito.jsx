@@ -8,7 +8,8 @@ export const Carrito = () => {
     console.log("Carrito: ", carrito);
 
     // Agregar boton que elimine del carrito
-    
+    // setTareas(carrito.filter((cart) => cart.id !== prod.id))
+
 
   return (
     <div style={{background: '#eee', padding: '1rem', marginBottom: '1rem', color: "black"}}>
@@ -21,7 +22,7 @@ export const Carrito = () => {
                     return (
                         <div style={{display: 'flex', justifyContent: 'center', gap:'2rem', alignItems: 'center'}}>
                     <li style={{color: 'black'}} key={prod.id}>{prod.nombre}</li>
-                    <button>x</button>
+                    <button >x</button>
                         </div>
                     )
                 })

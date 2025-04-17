@@ -20,12 +20,12 @@ function App() {
       {/* <Button titulo={"Contacto"} color={"blue"}/>
       <Button titulo={"Carrito"}  color={"green"}/> */}
 
-      <Header />
       {/* </div> */}
       {/* <TodoList/> */}
       {/* <PokemonList /> */}
       {/* <Card/> */}
 
+      <Header />
       <div style={{
         display: "flex",
         width: '80%',
