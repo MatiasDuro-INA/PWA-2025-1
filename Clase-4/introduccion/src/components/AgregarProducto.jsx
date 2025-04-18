@@ -5,7 +5,7 @@ export const AgregarProducto = () => {
 
     
     // const context = useContext(CartContext)
-    const { agregarProducto} = useCart()
+    const { agregarProducto, carrito} = useCart()
     
 
     const handleAgregar = () => {
@@ -20,7 +20,7 @@ export const AgregarProducto = () => {
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4rem'}}>
         {/* h3 que muestre la cantidad de elementos en el carrito.length */}
-        <h3>0</h3>
+        <h3>{carrito.length}</h3>
         <button onClick={handleAgregar}>Agregar Producto</button>
     </div>
   )
