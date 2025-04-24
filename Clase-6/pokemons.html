@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo Pokemon</title>
+</head>
+<style>
+    body {
+      font-family: sans-serif;
+      background: #f0f8ff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .pokemon-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .pokemon-card img {
+      width: 150px;
+      height: 150px;
+    }
+
+    .buttons {
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 8px 15px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .catch { background: #4CAF50; color: white; }
+    .pass { background: #f44336; color: white; }
+
+    .team {
+      margin-top: 30px;
+    }
+
+    .team h2 {
+      margin-bottom: 10px;
+    }
+
+    .team-member {
+      display: inline-block;
+      margin: 10px;
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      width: 120px;
+    }
+
+    .team-member img {
+      width: 80px;
+    }
+
+    .remove-btn {
+      background: crimson;
+      color: white;
+      font-size: 14px;
+      margin-top: 8px;
+      padding: 4px 8px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+</style>
+<body>
+    
+    <h1>Arma tu equipo Pokemon</h1>
+
+    <div id="pokemon" class="pokemon-card">
+        <p>Cargando pokemon...</p>
+    </div>
+
+    <div class="buttons">
+        <button onclick="atraparPokemon()">Atrapar</button>
+        <button onclick="CargarPokemonsRandom()">Pasar</button>
+    </div>
+
+    <div class="team">
+        <h2>Mi Equipo (max. 6)</h2>
+        <div id="teamContainer"></div>
+    </div>
+
+    <script>
+
+        let team = JSON.parse(localStorage.getItem('poketeam')) || []
+        let currentPoke
+
+        function CargarPokemonsRandom(){
+
+            const id = Math.floor(Math.random() * 151) + 1
+            console.log("ID: ", id);
+            
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+                .then( res => res.json())
+                .then( data => {
+                    console.log(data.sprites.other.showdown.front_default);
+                    
+                    currentPoke = {
+                        name: data.name,
+                        image: data.sprites.other.showdown.front_default
+                    }
+                    cargarPokemon(currentPoke)
+                })
+        }
+
+        function cargarPokemon(pokemon){
+            const card = document.getElementById('pokemon')
+
+            card.innerHTML = `
+                <h2>${(pokemon.name).toUpperCase()}</h2>
+                <img src="${pokemon.image}" alt="${pokemon.name}"/>
+            `
+        }
+
+        function atraparPokemon(){
+            if(team.length >= 6){
+                alert("Tu equipo ya tiene 6")
+                return
+            }
+
+            if(currentPoke){
+                team.push(currentPoke)
+                localStorage.setItem('poketeam', JSON.stringify(team))
+                CargarEquipo()
+                CargarPokemonsRandom()
+            }
+        }
+
+        function CargarEquipo(){
+            const container = document.getElementById('teamContainer')
+            container.innerHTML = ''
+
+            team.forEach((pokemon, index) => {
+                const div = document.createElement('div');
+                div.className = 'team-member'
+                div.innerHTML = `
+                    <img src="${pokemon.image}" alt="${pokemon.name}"/>
+                    <p>${pokemon.name}</p>
+                    <button onclick="eliminarPokemon(${index})">X</button>
+                `
+
+                container.appendChild(div)
+
+            });
+        }
+
+        function eliminarPokemon(index){
+            team.splice(index, 1)
+            localStorage.setItem('poketeam', JSON.stringify(team))
+            CargarEquipo()
+        }
+        
+        CargarEquipo()
+        CargarPokemonsRandom()
+    </script>
+</body>
+</html>
