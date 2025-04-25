@@ -7,7 +7,7 @@ export const RandomPokemon = () => {
 
     // const data = usePoke()
     // console.log("Data: ", data.pokemon);
-    const { pokemon, cargarPokemon } = usePoke()
+    const { pokemon, cargarPokemon, atraparPokemon } = usePoke()
 
     useEffect(() => {
         cargarPokemon()
@@ -21,8 +21,8 @@ export const RandomPokemon = () => {
   return (
     <div>
         <Pokemon pokemon={pokemon} />
-        <button>Agregar Pokemon</button>
-        <button>Cambiar Pokemon</button>
+        <button onClick={atraparPokemon}>Agregar Pokemon</button>
+        <button onClick={cargarPokemon}>Cambiar Pokemon</button>
         <Team/>
     </div>
   )

@@ -24,7 +24,7 @@ export const PokeProvider = ({ children }) => {
         }
     }
 
-     const cargarPokemon = () => {
+    const cargarPokemon = () => {
             const id = Math.floor(Math.random() * 151) + 1
             let currentPoke;
             fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
