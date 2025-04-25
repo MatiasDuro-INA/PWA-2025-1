@@ -20,7 +20,7 @@ export const RandomPokemon = () => {
 
   return (
     <div>
-        <Pokemon pokemon={pokemon} />
+        <Pokemon atraparPokemon={atraparPokemon} pokemon={pokemon} />
         <button onClick={atraparPokemon}>Agregar Pokemon</button>
         <button onClick={cargarPokemon}>Cambiar Pokemon</button>
         <Team/>

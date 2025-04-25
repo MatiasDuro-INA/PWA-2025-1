@@ -14,9 +14,9 @@ function App() {
 
   return (
     <PokeProvider>
-      {/* <PokemonCard/>
-      <Team/> */}
-      <RandomPokemon/>
+      <PokemonCard/>
+      <Team/>
+      {/* <RandomPokemon/> */}
     </PokeProvider>
   )
 }
