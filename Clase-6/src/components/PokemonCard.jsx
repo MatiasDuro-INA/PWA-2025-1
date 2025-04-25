@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Pokemon } from './Pokemon';
+import { usePoke } from '../context/PokemonContext';
+import { Button } from './Button';
 
 
 
@@ -33,48 +35,42 @@ function cargarPokemon(pokemon){
 
 export const PokemonCard = () => {
 
-    const [apiPokemon, setApiPokemon] = useState(null)
+    const { pokemon, setPokemon, atraparPokemon, cargarPokemon } = usePoke()
 
-
-    const id = Math.floor(Math.random() * 151) + 1
-    console.log("ID: ", id);
     
 
-    let currentPoke;
+   
     
     useEffect(() => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        .then( res => res.json())
-        .then( data => {
-            console.log(data.sprites.other.showdown.front_default);
-            
-            currentPoke = {
-                name: data.name,
-                image: data.sprites.other.showdown.front_default
-            }
-            setApiPokemon(currentPoke)
-        })
+        cargarPokemon()
         
     }, [])
     
     useEffect(() => {
-        console.log("apiPokemon: ", apiPokemon);
-    }, [apiPokemon])
+        console.log("pokemon: ", pokemon);
+    }, [pokemon])
     
-    if(!apiPokemon){
+    if(!pokemon){
         return (
             <p>Cargando pokemon...</p>
         )
     }
 
+    // const hacerTodo = () => {
+    //     atraparPokemon()
+    //     cargarPokemon()
+    // }
+
 
   return (
     <div id="pokemon" class="pokemon-card">
-        <Pokemon pokemon={apiPokemon} />
+        <Pokemon pokemon={pokemon} />
         {/* {
-            // apiPokemon ? (<Pokemon pokemon={apiPokemon} />) : (<p>Cargando pokemon...</p>)
-            apiPokemon && <Pokemon pokemon={apiPokemon} />
+            // pokemon ? (<Pokemon pokemon={pokemon} />) : (<p>Cargando pokemon...</p>)
+            pokemon && <Pokemon pokemon={pokemon} />
         } */}
+             <Button titulo={"Atrapar"} handleClick={atraparPokemon}/>
+             <Button titulo={"Pasar"} handleClick={cargarPokemon}/>
     </div>
   )
 }

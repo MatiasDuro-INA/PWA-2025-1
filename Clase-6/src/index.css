@@ -41,7 +41,12 @@ button {
 
 .team {
   margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
 .team h2 {
   margin-bottom: 10px;

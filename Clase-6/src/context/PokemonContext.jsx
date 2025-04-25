@@ -4,45 +4,53 @@ import React, { createContext, useContext, useState } from "react";
 export const PokemonContext = createContext()
 
 // Hook para usar el contexto de forma mas sencilla
-export const useCart = () => useContext(PokemonContext)
+export const usePoke = () => useContext(PokemonContext)
 
-export const CartProvider = ({ children }) => {
+export const PokeProvider = ({ children }) => {
 
-    const [pokemon, setPokemon] = useState([]) 
+    const [pokemon, setPokemon] = useState(null)
+    const [team, setTeam] = useState([])
 
     function atraparPokemon(){
         if(team.length >= 6){
-            alert("Tu equipo ya tiene 6")
             return
         }
 
-        if(currentPoke){
-            team.push(currentPoke)
+        if(pokemon){
+            // (prev) => [...prev, producto]
+            setTeam((prev) => [...prev, pokemon])
             localStorage.setItem('poketeam', JSON.stringify(team))
-            CargarEquipo()
-            CargarPokemonsRandom()
+            cargarPokemon()
         }
     }
 
-    function CargarEquipo(){
-            const container = document.getElementById('teamContainer')
-
-            team.forEach((pokemon, index) => {
-                const div = document.createElement('div');
+     const cargarPokemon = () => {
+            const id = Math.floor(Math.random() * 151) + 1
+            let currentPoke;
+            fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+            .then( res => res.json())
+            .then( data => {
+                console.log(data.sprites.other.showdown.front_default);
                 
-                    <img src={`${pokemon.image}`} alt={`${pokemon.name}`}/>
-                    <p>{`${pokemon.name}`}</p>
-                    <button onClick="eliminarPokemon(${index})">X</button>
-                
+                currentPoke = {
+                    name: data.name,
+                    image: data.sprites.other.showdown.front_default
+                }
+                setPokemon(currentPoke)
+            })
+        }
 
-                container.appendChild(div)
 
-            });
+    function eliminarPokemon(pokeIndex) {
+        // setCarrito(carrito.filter((cart) => cart.id !== id))
+
+        setTeam(team.filter((poke, index) => index !== pokeIndex))
+        
     }
 
-    function eliminarPokemon(index) {
-        team.splice(index, 1)
-        localStorage.setItem('poketeam', JSON.stringify(team))
-        CargarEquipo()
-    }
+    return (
+        <PokemonContext.Provider value={{eliminarPokemon, atraparPokemon, pokemon, setPokemon, team, cargarPokemon}}>
+            {children}
+        </PokemonContext.Provider>
+    )
 }

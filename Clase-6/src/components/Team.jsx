@@ -1,12 +1,26 @@
 import React from 'react'
+import { usePoke } from '../context/PokemonContext'
 
 export const Team = () => {
+
+  // llamar eliminarPokemon del contexto
+  const { team, eliminarPokemon } = usePoke()
+
   return (
-    <div class="team">
+    <div className="team">
     <h2>Mi Equipo (max. 6)</h2>
-    <img src="${pokemon.image}" alt="${pokemon.name}"/>
-                    {/* <p>${pokemon.name}</p> */}
-                    <button onclick="eliminarPokemon(${index})">X</button>
+
+    {
+      team.map((poke, index) => {
+        return (
+        <div key={index}>
+        <img src={poke.image} alt={poke.name}/>
+          <p>{poke.name}</p>
+          {/* Pasarle eliminarPokemon al onclick delbutton */}
+        <button onClick={() => eliminarPokemon(index)}>X</button>
+        </div>
+      ) })
+    }
     </div>
   )
 }

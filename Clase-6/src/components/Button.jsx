@@ -1,7 +1,7 @@
 
 import React from "react"
 
-export const Button = ({titulo, color}) => {
+export const Button = ({titulo, color, handleClick}) => {
 
   // console.log("Props: ", props);
   // Desestructuracion
@@ -10,7 +10,7 @@ export const Button = ({titulo, color}) => {
 
   return (
     <>
-    <div className="ButtonContainer">
+    <div className="ButtonContainer" onClick={handleClick}>
         <button className="Button" style={{color: color}}>{titulo}</button>
     </div>
     </>

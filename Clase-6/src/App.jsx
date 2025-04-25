@@ -5,18 +5,19 @@ import './App.css'
 import { PokemonCard } from './components/PokemonCard'
 import { Team } from './components/Team'
 import { Button } from './components/Button'
+import { PokeProvider } from './context/PokemonContext'
+import { RandomPokemon } from './components/RandomPokemon'
 
 function App() {
   const [count, setCount] = useState(0)
-  
+
 
   return (
-    <>
-     <PokemonCard/>
-     <Button titulo={"Atrapar"}/>
-     <Button titulo={"Pasar"}/>
-     <Team/>
-    </>
+    <PokeProvider>
+      {/* <PokemonCard/>
+      <Team/> */}
+      <RandomPokemon/>
+    </PokeProvider>
   )
 }
 
